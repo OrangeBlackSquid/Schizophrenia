@@ -88,17 +88,13 @@ local function stopAllSounds()
 end
 
 local SND_CROWD  = "rbxassetid://6042053626"
-local SND_CLICK  = "rbxassetid://131961136"
+local SND_CLICK  = "rbxassetid://9120386436"
 local SND_NOTIFY = "rbxassetid://9120386436"
 
 local namePrefixes = {"User", "Guest", "Unknown", "Anon", "Null", "Void", "Silent", "Hidden", "Shadow", "Echo", "Whisper", "Static"}
 local function randomName()
     return namePrefixes[math.random(1, #namePrefixes)] .. "_" .. math.random(100, 9999)
 end
-
--- ============================================================
--- World color / lighting effects
--- ============================================================
 
 local function makeColorCorrection()
     local cc = Lighting:FindFirstChild("SchizoColorCorrection")
@@ -193,10 +189,6 @@ local function evDoubleVision()
     task.wait(0.7)
 end
 
--- ============================================================
--- Audio events
--- ============================================================
-
 local function evWhisper()
     local s = playSound(SND_CROWD, 0.35, 0.35 + math.random() * 0.1)
     task.delay(3, function()
@@ -272,10 +264,6 @@ local function evNameCalled()
     pcall(function() lbl:Destroy() end)
 end
 
--- ============================================================
--- Camera events
--- ============================================================
-
 local function evCameraShake()
     local cam = Workspace.CurrentCamera
     if not cam then return end
@@ -309,7 +297,6 @@ end
 local function evCameraRoll()
     local cam = Workspace.CurrentCamera
     if not cam then return end
-    local startCF = cam.CFrame
     local rollAmount = (math.random() - 0.5) * 0.35
     local endTime = tick() + 1.8
     local conn
@@ -324,10 +311,6 @@ local function evCameraRoll()
     end)
     task.wait(1.9)
 end
-
--- ============================================================
--- Visual overlay events
--- ============================================================
 
 local function evScreenTint()
     local f = Instance.new("Frame")
@@ -358,10 +341,6 @@ local function evVignette()
     task.wait(1.1)
     pcall(function() f:Destroy() end)
 end
-
--- ============================================================
--- World events
--- ============================================================
 
 local function evSilhouette()
     local char = LocalPlayer.Character
@@ -566,10 +545,6 @@ local function evFakeChat()
     task.wait(0.9)
     pcall(function() box:Destroy() end)
 end
-
--- ============================================================
--- Build UI
--- ============================================================
 
 local buildOk, buildErr = pcall(function()
 
